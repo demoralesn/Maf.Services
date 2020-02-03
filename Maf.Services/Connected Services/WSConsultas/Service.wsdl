@@ -1,0 +1,2045 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://sinacofi.cl/WebServices" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://sinacofi.cl/WebServices" />
+      <s:element name="InformeComercial">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rut" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="esProvincia" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InformeComercialResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InformeComercialResult" type="tns:RespuestaPersona" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RespuestaPersona">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="WS_ERROR" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_respuesta" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="rut" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombres" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="apellidos" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fechaNacimiento" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="sexo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="estadoCivil" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nacionalidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="actividad" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fechaUltimaConsulta" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="detalleConsultas" type="tns:ArrayOfRespuestaConsulta" />
+          <s:element minOccurs="0" maxOccurs="1" name="detalleDeudas" type="tns:ArrayOfRespuestaDetalleDeuda" />
+          <s:element minOccurs="0" maxOccurs="1" name="detalleInforme" type="tns:ArrayOfRespuestaDetalleInforme" />
+          <s:element minOccurs="0" maxOccurs="1" name="detalleVehiculo" type="tns:ArrayOfRespuestaDetalleVehiculo" />
+          <s:element minOccurs="0" maxOccurs="1" name="DetalleSociedad" type="tns:ArrayOfRespuestaDetalleSociedad" />
+          <s:element minOccurs="0" maxOccurs="1" name="DetalleBienesRaices" type="tns:ArrayOfRespuestaDetalleBienRaiz" />
+          <s:element minOccurs="0" maxOccurs="1" name="DetalleConyuges" type="tns:ArrayOfRespuestaDetalleConyugue" />
+          <s:element minOccurs="1" maxOccurs="1" name="edad" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="oficio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cantidad_vehiculos" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="cantidad_socios" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="bancos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRespuestaConsulta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RespuestaConsulta" type="tns:RespuestaConsulta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RespuestaConsulta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="empresa" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fecha_consulta" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRespuestaDetalleDeuda">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RespuestaDetalleDeuda" type="tns:RespuestaDetalleDeuda" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RespuestaDetalleDeuda">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="monto" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="periodo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRespuestaDetalleInforme">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RespuestaDetalleInforme" type="tns:RespuestaDetalleInforme" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RespuestaDetalleInforme">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fecha_vencimiento" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_moneda" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="monto" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="librador" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="rutdirecto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="domicilio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comuna" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="grupoclasificacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="glosagrupoclasificacion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRespuestaDetalleVehiculo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RespuestaDetalleVehiculo" type="tns:RespuestaDetalleVehiculo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RespuestaDetalleVehiculo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="agno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="marca" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="modelo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="clasificacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaCarga" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaTrasferencia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="patente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="chasis" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="motor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="serie" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRespuestaDetalleSociedad">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RespuestaDetalleSociedad" type="tns:RespuestaDetalleSociedad" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RespuestaDetalleSociedad">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuerpo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pagina" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="estracto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="publicadoComo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombreSociedad" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="id_persona" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRespuestaDetalleBienRaiz">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RespuestaDetalleBienRaiz" type="tns:RespuestaDetalleBienRaiz" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RespuestaDetalleBienRaiz">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="rolPropiedad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comuna" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoPropiedad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="destino" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="avaluo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="id_persona" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRespuestaDetalleConyugue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RespuestaDetalleConyugue" type="tns:RespuestaDetalleConyugue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RespuestaDetalleConyugue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CODIGO_RETORNO" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESTADO_CIVIL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_TITULAR" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RUT_CONYUGE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_CONYUGE" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FECHA_MATRIMONIO" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="REGIMEN_MATRIMONIAL" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FECHA_ACTUALIZACION" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="id_persona" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InformeComercialLight">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rut" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="esProvincia" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InformeComercialLightResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InformeComercialLightResult" type="tns:RespuestaPersona" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaDicom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaDicomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaDicomResult" type="tns:PLATINUMOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PLATINUMOutput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="antecedentesLaborales" type="tns:PLATINUMAntecedentesLaborales" />
+          <s:element minOccurs="0" maxOccurs="1" name="antecedentesParticulares" type="tns:PLATINUMAntecedentesParticulares" />
+          <s:element minOccurs="0" maxOccurs="1" name="consultaRut" type="tns:PLATINUMConsultaRut" />
+          <s:element minOccurs="0" maxOccurs="1" name="identificacionEmpresa" type="tns:PLATINUMIdentificacionEmpresa" />
+          <s:element minOccurs="0" maxOccurs="1" name="identificacionPersona" type="tns:PLATINUMIdentificacionPersona" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorAcreditacion" type="tns:PLATINUMIndicadorAcreditacion" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorRiesgoCrediticio" type="tns:PLATINUMIndicadorRiesgoCrediticio" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadoresPrevencionFraude" type="tns:PLATINUMIndicadoresPrevencionFraude" />
+          <s:element minOccurs="0" maxOccurs="1" name="justificacion" type="tns:PLATINUMJustificacion" />
+          <s:element minOccurs="0" maxOccurs="1" name="registroMorosidadesYProtestos" type="tns:PLATINUMRegistroMorosidadesYProtestos" />
+          <s:element minOccurs="0" maxOccurs="1" name="resumen" type="tns:PLATINUMResumen" />
+          <s:element minOccurs="0" maxOccurs="1" name="resumenMorosidadesYProtestosImpagos" type="tns:PLATINUMResumenMorosidadesYProtestosImpagos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMAntecedentesLaborales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="caargoEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ciudadDireccionLaboral" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comunaDireccionLaboral" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="direccionLaboral" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaVerificacionDatos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fuenteVerificacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombreEmpleador" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefono" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMAntecedentesParticulares">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadDirecciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ciudadDireccionParticular" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigoPostal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comunaDireccionParticular" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="direccionElectronica" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="direccionParticular" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="direccionURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorGrupoSocioEconomico" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorPaginaWeb" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numeroFax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefono1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefono2" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMConsultaRut">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadConsultasPeriodoDefinido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadUnidadesTiempo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="detalleConsultasRut" type="tns:ArrayOfPLATINUMDetalleConsultaRut" />
+          <s:element minOccurs="0" maxOccurs="1" name="medidaTiempoUtilizada" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPLATINUMDetalleConsultaRut">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PLATINUMDetalleConsultaRut" nillable="true" type="tns:PLATINUMDetalleConsultaRut" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMDetalleConsultaRut">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="fechaConsulta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="informe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMIdentificacionEmpresa">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigoActividadEconomica" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descripcionActividadEconomica" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="detalleActividadesEconomicas" type="tns:ArrayOfPLATINUMDetalleActividadEconomica" />
+          <s:element minOccurs="0" maxOccurs="1" name="detalleEjecutivos" type="tns:ArrayOfPLATINUMDetalleEjecutivo" />
+          <s:element minOccurs="0" maxOccurs="1" name="razonSocial" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPLATINUMDetalleActividadEconomica">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PLATINUMDetalleActividadEconomica" nillable="true" type="tns:PLATINUMDetalleActividadEconomica" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMDetalleActividadEconomica">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPLATINUMDetalleEjecutivo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PLATINUMDetalleEjecutivo" nillable="true" type="tns:PLATINUMDetalleEjecutivo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMDetalleEjecutivo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cargo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="rutDigito" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="rutNumero" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMIdentificacionPersona">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigoOficio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigoProfesion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descripcionActividadEconomica" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descripcionOficio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descripcionProfesion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="edad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="estadoCivil" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaNacimiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nacionalidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sexo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoNacionalidad" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMIndicadorAcreditacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="anioUltimaExportacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="anioUltimaImportacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadBancos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadOtrosVehiculos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadPrendasSinDesplazamiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadPropiedades" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadRelacionesComoSociedad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadRelacionesComoSocio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadVehiculosLivianos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadVehiculosPesados" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="deudaDirectaVigente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="estimacionRenta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaUltimaVerificacionDomicilio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="folioDeclaracionImpuestos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="glosaEstimadorRenta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="lineaCreditoNoUtilizada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoTotalAvaluoFiscal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoUltimaExportacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoUltimaImportacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombresBancos" type="tns:ArrayOfPLATINUMNombreBanco" />
+          <s:element minOccurs="0" maxOccurs="1" name="periodoDeclaracionImpuestos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="periodoVigente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPLATINUMNombreBanco">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PLATINUMNombreBanco" nillable="true" type="tns:PLATINUMNombreBanco" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMNombreBanco">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMIndicadorRiesgoCrediticio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="aspectosRelevante" type="tns:ArrayOfPLATINUMAspectoRelevante" />
+          <s:element minOccurs="0" maxOccurs="1" name="aspectosRelevantes" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="0" maxOccurs="1" name="clasificadorPersonaJuridica" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="escalaPredictores" type="tns:ArrayOfPLATINUMEscalaPredictor" />
+          <s:element minOccurs="0" maxOccurs="1" name="informaPredictorHistorico" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="origenUsuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="porcentajeMenorAlCalculado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="predictorPersonaNatural" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="predictoresHistoricos" type="tns:ArrayOfPLATINUMPredictorHistorico" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPLATINUMAspectoRelevante">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PLATINUMAspectoRelevante" nillable="true" type="tns:PLATINUMAspectoRelevante" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMAspectoRelevante">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPLATINUMEscalaPredictor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PLATINUMEscalaPredictor" nillable="true" type="tns:PLATINUMEscalaPredictor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMEscalaPredictor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="claseRiesgo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="porcentaje" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="predictorMaximo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="predictorMinimo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="probabilidad" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPLATINUMPredictorHistorico">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PLATINUMPredictorHistorico" nillable="true" type="tns:PLATINUMPredictorHistorico" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMPredictorHistorico">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="periodo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMIndicadoresPrevencionFraude">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadAnotacionesTributariasVigentes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadCuentasCorrientesBloqueadas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadONP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadOPNUltimosMeses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadPublicaciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadUltimosMesesOPN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuentasCorrientesCerradas" type="tns:ArrayOfPLATINUMCuentaCorrienteCerrada" />
+          <s:element minOccurs="0" maxOccurs="1" name="detalleONPs" type="tns:ArrayOfPLATINUMDetalleONP" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaDefuncion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaInterdicto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaUltimoBoletinLaboral" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorImpedidoAbrirCuentaCorriente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorPersonaDifunta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorTieneDeudaMorosaVencidaCastigada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorVerificacionIdentidad" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPLATINUMCuentaCorrienteCerrada">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PLATINUMCuentaCorrienteCerrada" nillable="true" type="tns:PLATINUMCuentaCorrienteCerrada" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMCuentaCorrienteCerrada">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="banco" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPLATINUMDetalleONP">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PLATINUMDetalleONP" nillable="true" type="tns:PLATINUMDetalleONP" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMDetalleONP">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="banco" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaPublicacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fuente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="motivo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroCheque" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroCuenta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroSerie" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroSucursal" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMJustificacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="fechaJustificacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="textoJustificacion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMRegistroMorosidadesYProtestos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadDocumentosBoletinProtestosEImpagos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadDocumentosICOM" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadImpagosInformados" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadMorososComercio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadMultasEInfraccionesEnLaboralYPrevisional" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoTotalImpago" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="morosidadesBED" type="tns:ArrayOfPLATINUMMorosidadBED" />
+          <s:element minOccurs="0" maxOccurs="1" name="morosidadesBOLAB" type="tns:ArrayOfPLATINUMMorosidadBOLAB" />
+          <s:element minOccurs="0" maxOccurs="1" name="morosidadesBOLCOM" type="tns:ArrayOfPLATINUMMorosidadBOLCOM" />
+          <s:element minOccurs="0" maxOccurs="1" name="morosidadesICOM" type="tns:ArrayOfPLATINUMMorosidadICOM" />
+          <s:element minOccurs="0" maxOccurs="1" name="porMercados" type="tns:ArrayOfPLATINUMPorMercado" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPLATINUMMorosidadBED">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PLATINUMMorosidadBED" nillable="true" type="tns:PLATINUMMorosidadBED" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMMorosidadBED">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigoMoneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaIngresoEFX" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaVencimiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="justificacionDescripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="justificacionFecha" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mercadoCodigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mercadoDescripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoImpago" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombreLibrador" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombreLocalidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroChequeOperacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoDeuda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoDocumento" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPLATINUMMorosidadBOLAB">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PLATINUMMorosidadBOLAB" nillable="true" type="tns:PLATINUMMorosidadBOLAB" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMMorosidadBOLAB">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="anoResolucion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaBoletin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoDeuda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="motivoInfraccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombreInstitucion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroBoletin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroCotizacionesAdeudadas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroImpeccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroMesesAdeudados" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroResolucion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pagBoletin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="regionImpeccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoInfraccion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPLATINUMMorosidadBOLCOM">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PLATINUMMorosidadBOLCOM" nillable="true" type="tns:PLATINUMMorosidadBOLCOM" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMMorosidadBOLCOM">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigoMoneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaIngreso" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaVencimiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="justificacionDescripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="justificacionFecha" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mercadoCodigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mercadoDescripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoImpago" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombreLibrador" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombreLocalidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombreNotario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroBoletin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroChequeOperacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoCredito" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoDeuda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoDocumento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoMotivo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPLATINUMMorosidadICOM">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PLATINUMMorosidadICOM" nillable="true" type="tns:PLATINUMMorosidadICOM" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMMorosidadICOM">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigoMoneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaVencimiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mercadoCodigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mercadoDescripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoImpago" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombreLibrador" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombreLocalidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroChequeOperacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoCredito" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoDeuda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoDocumento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoMotivo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPLATINUMPorMercado">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PLATINUMPorMercado" nillable="true" type="tns:PLATINUMPorMercado" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMPorMercado">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoImpagos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nroImpagos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMResumen">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="actualizarNICEnBaseDICOM" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadImpagos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="estadoCedulaIdentidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaInformeAlmacenado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaMotivoEstadoCedula" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaVencimientoCedulaVigenteAportadaPorSRCel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="forzadoBuscarSRCI" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorAcreditaciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorConsultaSRCel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorDiferenciaNombreSuperDicom" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorDifunto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorErrorConectarseALaCamaraDeComercio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorNumeroSerieUsado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorOrigenRespuesta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorRespuesta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="informacionBloqueosDICOM" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="informacionCedulaBloqueadaMenor30DiasDICOM" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoDeudaVigente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoImpagos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="motivoEstadoCedulaIdentidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numeroDocumentoConsultado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numeroSerieCedulaVigente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numeroSerieConsultado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numeroSerieVigente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numeroVersion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoDocumentoConsultado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoInforme" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PLATINUMResumenMorosidadesYProtestosImpagos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="accesoCamaraComercio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadDocumentos12A24Meses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadDocumentos6A12Meses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadDocumentosAcumulados12Meses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadDocumentosAcumulados24Meses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadDocumentosAcumuladosMasDe24Meses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadDocumentosAcumuladosUltimos6Meses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadDocumentosMasDe24Meses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadDocumentosUltimos6Meses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidadTotalImpagos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fechaVencimientoUltimoImpago" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorErrorConectarseAlCSS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="indicadorExistenciaInformacionParaSeccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoDocumentos12A24Meses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoDocumentos6A12Meses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoDocumentosMasDe24Meses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoDocumentosUltimos6Meses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoTotalImpagos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="montoUltimoImpago" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoDeudaUltimoImpago" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConsultaTransUnion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DCTTransaccionNatResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="trx" type="tns:transaccionTrx" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dct_respuesta" type="tns:transaccionDct_respuesta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionTrx">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="error" type="tns:ArrayOfTransaccionTrxError" />
+          <s:element minOccurs="0" maxOccurs="1" name="trx_desc" type="tns:ArrayOfTransaccionTrxTrx_desc" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionTrxError">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionTrxError" nillable="true" type="tns:transaccionTrxError" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionTrxError">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_error" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descripcion_error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionTrxTrx_desc">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionTrxTrx_desc" nillable="true" type="tns:transaccionTrxTrx_desc" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionTrxTrx_desc">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="hora" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cliente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDct_respuesta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="dct_identificacion" type="tns:ArrayOfTransaccionDct_respuestaDct_identificacionIdentificacion" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_resumen" type="tns:ArrayOfTransaccionDct_respuestaDct_resumen" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_detalle" type="tns:ArrayOfTransaccionDct_respuestaDct_detalle" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDct_respuestaDct_identificacionIdentificacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDct_respuestaDct_identificacionIdentificacion" nillable="true" type="tns:transaccionDct_respuestaDct_identificacionIdentificacion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDct_respuestaDct_identificacionIdentificacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="rut" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="rut_tipo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_razon" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDct_respuestaDct_resumen">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDct_respuestaDct_resumen" nillable="true" type="tns:transaccionDct_respuestaDct_resumen" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDct_respuestaDct_resumen">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="dct_resumen_protestos_vigentes" type="tns:ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_protestos_vigentes" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_resumen_morosidad_consolidada" type="tns:ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_morosidad_consolidada" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_resumen_boletin_laboral" type="tns:ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_boletin_laboral" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_resumen_anotacion_vigente" type="tns:ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_anotacion_vigente" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_resumen_bloqueo_cedula" type="tns:ArrayOfTransaccionDct_respuestaDct_resumenDct_resumendct_resumen_bloqueo_cedula" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_resumen_N_Serie" type="tns:ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_N_Serie" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_resumen_defuncion" type="tns:ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_defuncion" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_resumen_inf_positiva" type="tns:ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_inf_positiva" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_resumen_consultas_al_rut" type="tns:ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_consultas_al_rut" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_protestos_vigentes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_protestos_vigentes" nillable="true" type="tns:transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_protestos_vigentes" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_protestos_vigentes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="total_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acreedores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_mas_reciente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_morosidad_consolidada">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_morosidad_consolidada" nillable="true" type="tns:transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_morosidad_consolidada" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_morosidad_consolidada">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="total_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acreedores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_mas_reciente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_boletin_laboral">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_boletin_laboral" nillable="true" type="tns:transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_boletin_laboral" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_boletin_laboral">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="total_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acreedores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_mas_reciente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_anotacion_vigente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_anotacion_vigente" nillable="true" type="tns:transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_anotacion_vigente" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_anotacion_vigente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="total_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acreedores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_mas_reciente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDct_respuestaDct_resumenDct_resumendct_resumen_bloqueo_cedula">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDct_respuestaDct_resumenDct_resumendct_resumen_bloqueo_cedula" nillable="true" type="tns:transaccionDct_respuestaDct_resumenDct_resumendct_resumen_bloqueo_cedula" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDct_respuestaDct_resumenDct_resumendct_resumen_bloqueo_cedula">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="bloqueo_cedula" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_N_Serie">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_N_Serie" nillable="true" type="tns:transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_N_Serie" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_N_Serie">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="N_Serie" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_defuncion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_defuncion" nillable="true" type="tns:transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_defuncion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_defuncion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="defuncion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_inf_positiva">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_inf_positiva" nillable="true" type="tns:transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_inf_positiva" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_inf_positiva">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="informacion_positiva" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDct_respuestaDct_resumenDct_resumenDct_resumen_consultas_al_rut">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_consultas_al_rut" nillable="true" type="tns:transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_consultas_al_rut" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDct_respuestaDct_resumenDct_resumenDct_resumen_consultas_al_rut">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nro_consultas" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDct_respuestaDct_detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDct_respuestaDct_detalle" nillable="true" type="tns:transaccionDct_respuestaDct_detalle" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDct_respuestaDct_detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="dct_detalle_identificacion" type="tns:ArrayOfTransaccionDct_respuestaDct_detalleDct_identificacion_detalle" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_detalle_antecedentes_laborales" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_antecedentes_laborales" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_detalle_antecedentes_de_riesgo_crediticio" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_antecedentes_de_riesgo_crediticio" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_detalle_clasificador" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalledDt_detalle_clasificador" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_detalle_informacion_positiva" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_informacion_positiva" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_detalle_indicadores_de_control" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_indicadores_de_control" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_detalle_registros_de_protestos_y_morosidades" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_registros_de_protestos_y_morosidades" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_detalle_consultas_al_rut" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_consultas_al_rut" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_detalle_registro_orden_de_pago" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_registro_orden_de_pago" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_detalle_de_registros_de_morosidad_y_protestos" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_de_registros_de_morosidad_y_protestos" />
+          <s:element minOccurs="0" maxOccurs="1" name="dct_detalle_individual_de_registros_de_morosidad_y_protestos" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_individual_de_registros_de_morosidad_y_protestos" />
+          <s:element minOccurs="0" maxOccurs="1" name="prenda_detalle" type="tns:Prenda_detalle" />
+          <s:element minOccurs="0" maxOccurs="1" name="sys_detalle" type="tns:transaccionSys_respuestaSys_detalle" />
+          <s:element minOccurs="0" maxOccurs="1" name="rbr_detalle_propiedades" type="tns:rbr_detalle_propiedades" />
+          <s:element minOccurs="0" maxOccurs="1" name="veh_vehiculos" type="tns:veh_vehiculos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDct_respuestaDct_detalleDct_identificacion_detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDct_respuestaDct_detalleDct_identificacion_detalle" nillable="true" type="tns:transaccionDct_respuestaDct_detalleDct_identificacion_detalle" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDct_respuestaDct_detalleDct_identificacion_detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_de_nacimiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="edad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sexo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nacionalidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="estado_civil" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_civil" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="informacion_conyuge" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_direcciones_informadas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="gse" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cod_area" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefono" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cod_area_2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefono_2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_antecedentes_laborales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleDct_detalle_antecedentes_laborales" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleDct_detalle_antecedentes_laborales" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleDct_detalle_antecedentes_laborales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="antecedentes_laborales" type="tns:ArrayOfTransaccionDcp_respuestaantecedentes_laborales" />
+          <s:element minOccurs="0" maxOccurs="1" name="actividades_economicas" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleactividades_economicas" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaantecedentes_laborales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaantecedentes_laborales" nillable="true" type="tns:transaccionDcp_respuestaantecedentes_laborales" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaantecedentes_laborales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="actividad_profesion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="razon_social_empresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="rut_empresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefono" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="direccion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleactividades_economicas">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleactividades_economicas" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleactividades_economicas" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleactividades_economicas">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nro_actividades_economicas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="act_eco" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleact_eco" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleact_eco">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleact_eco" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleact_eco" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleact_eco">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="glosa" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_antecedentes_de_riesgo_crediticio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleDct_detalle_antecedentes_de_riesgo_crediticio" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleDct_detalle_antecedentes_de_riesgo_crediticio" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleDct_detalle_antecedentes_de_riesgo_crediticio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="rut_tipo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="score" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="probabilidad_real" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="percentil_poblacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_buenos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_malos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="evolucion_score" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="labels_score" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalledDt_detalle_clasificador">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalledDt_detalle_clasificador" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalledDt_detalle_clasificador" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalledDt_detalle_clasificador">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="clasificacion" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleDt_detalle_clasificadorClasificacion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleDt_detalle_clasificadorClasificacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleDt_detalle_clasificadorClasificacion" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleDt_detalle_clasificadorClasificacion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleDt_detalle_clasificadorClasificacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="resultado" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_informacion_positiva">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleDct_detalle_informacion_positiva" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleDct_detalle_informacion_positiva" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleDct_detalle_informacion_positiva">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="movimientos_de_bancos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ultima_declaracion_de_impuestos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_vehiculos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="monto_tasacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad_con_tasacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="publicaciones_como_socio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="publicaciones_como_sociedad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ultima_verificacion_de_domicilio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comercio_exterior_importaciones_ano" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comercio_exterior_exportaciones_ano" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comercio_exterior_importaciones_cif_us" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comercio_exterior_exportaciones_fob_us" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bienes_raices_nro_propiedades" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bienes_raices_avaluo_fiscal_total" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="prendas_nro_prendas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="prendas_fecha_mas_reciente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="prendas_nro_acreedores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cmx_detalle" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleCmx_detalle" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleCmx_detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleCmx_detalle" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleCmx_detalle" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleCmx_detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cmx_detalle_periodo_actual" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleCmx_detalle_periodo_actual" />
+          <s:element minOccurs="0" maxOccurs="1" name="cmx_detalle_periodo_anterior" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleCmx_detalle_periodo_anterior" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleCmx_detalle_periodo_actual">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleCmx_detalle_periodo_actual" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleCmx_detalle_periodo_actual" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleCmx_detalle_periodo_actual">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ano_actual" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cmx_detalle_importaciones" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleCmx_detalle_importaciones" />
+          <s:element minOccurs="0" maxOccurs="1" name="cmx_detalle_exportaciones" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleCmx_detalle_exportaciones" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleCmx_detalle_importaciones">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleCmx_detalle_importaciones" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleCmx_detalle_importaciones" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleCmx_detalle_importaciones">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="us" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="operaciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ENE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FEB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MAR" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ABR" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MAY" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="JUN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="JUL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AGO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SEP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OCT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NOV" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DIC" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleCmx_detalle_exportaciones">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleCmx_detalle_exportaciones" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleCmx_detalle_exportaciones" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleCmx_detalle_exportaciones">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="us" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="operaciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ENE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FEB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MAR" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ABR" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MAY" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="JUN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="JUL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AGO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SEP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OCT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NOV" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DIC" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleCmx_detalle_periodo_anterior">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleCmx_detalle_periodo_anterior" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleCmx_detalle_periodo_anterior" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleCmx_detalle_periodo_anterior">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ano_actual" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cmx_detalle_periodo_actual" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleCmx_detalle_importaciones" />
+          <s:element minOccurs="0" maxOccurs="1" name="cmx_detalle_periodo_anterior" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleCmx_detalle_exportaciones" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_indicadores_de_control">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleDct_detalle_indicadores_de_control" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleDct_detalle_indicadores_de_control" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleDct_detalle_indicadores_de_control">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="estado_cedula" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="motivo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_serie" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_cedula" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="defuncion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="boletin_laboral_deudas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="boletin_laboral_multas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="boletin_laboral_fecha_mas_reciente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="anota_vigentes_nro_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="anota_vigentes_fecha_mas_reciente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="quiebra_numero_publicaciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="quiebra_fecha_mas_reciente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_registros_de_protestos_y_morosidades">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleDct_detalle_registros_de_protestos_y_morosidades" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleDct_detalle_registros_de_protestos_y_morosidades" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleDct_detalle_registros_de_protestos_y_morosidades">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="totales" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleTotales" />
+          <s:element minOccurs="0" maxOccurs="1" name="protestos_vigentes" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleProtestos_vigentes" />
+          <s:element minOccurs="0" maxOccurs="1" name="morosidad_consolidada" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleMorosidad_consolidada" />
+          <s:element minOccurs="0" maxOccurs="1" name="boletin_laboral" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleBoletin_laboral" />
+          <s:element minOccurs="0" maxOccurs="1" name="distribucion_periodos_acumulados" type="tns:ArrayOfTransaccionDcp_respuestaDistribucion_periodos_acumulados" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleTotales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleTotales" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleTotales" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleTotales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="total_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_documentos_total_bic_mc_bol" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_acreedores_total_bic_mc_bol" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="monto_total_bic_mc_bol" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleProtestos_vigentes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleProtestos_vigentes" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleProtestos_vigentes" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleProtestos_vigentes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="monto_total" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_acreedores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="monto_promedio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_mas_reciente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleMorosidad_consolidada">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleMorosidad_consolidada" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleMorosidad_consolidada" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleMorosidad_consolidada">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="monto_total" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_acreedores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="monto_promedio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_mas_reciente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleBoletin_laboral">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleBoletin_laboral" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleBoletin_laboral" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleBoletin_laboral">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="monto_total" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_acreedores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="monto_promedio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_mas_reciente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDistribucion_periodos_acumulados">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDistribucion_periodos_acumulados" nillable="true" type="tns:transaccionDcp_respuestaDistribucion_periodos_acumulados" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDistribucion_periodos_acumulados">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ultimos_6_meses" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleUltimos_3_meses" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_3_a_6" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleMes_3_a_6" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_6_a_12" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleMes_6_a_12" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_12_a_24" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleMes_12_a_24" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_24_a_36" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleMes_24_a_36" />
+          <s:element minOccurs="0" maxOccurs="1" name="mas_de_36" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleMas_de_36" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleUltimos_3_meses">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleUltimos_3_meses" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleUltimos_3_meses" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleUltimos_3_meses">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="periodo_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="periodo_montos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acumulado_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acumulado_montos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleMes_3_a_6">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleMes_3_a_6" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleMes_3_a_6" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleMes_3_a_6">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="periodo_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="periodo_montos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acumulado_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acumulado_montos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleMes_6_a_12">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleMes_6_a_12" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleMes_6_a_12" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleMes_6_a_12">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="periodo_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="periodo_montos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acumulado_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acumulado_montos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleMes_12_a_24">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleMes_12_a_24" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleMes_12_a_24" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleMes_12_a_24">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="periodo_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="periodo_montos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acumulado_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acumulado_montos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleMes_24_a_36">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleMes_24_a_36" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleMes_24_a_36" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleMes_24_a_36">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="periodo_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="periodo_montos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acumulado_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acumulado_montos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleMas_de_36">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleMas_de_36" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleMas_de_36" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleMas_de_36">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="periodo_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="periodo_montos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acumulado_documentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acumulado_montos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_consultas_al_rut">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleDct_detalle_consultas_al_rut" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleDct_detalle_consultas_al_rut" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleDct_detalle_consultas_al_rut">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="dct_consultas_al_rut" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalledct_consultas_al_rut" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_consultas" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalledct_consultas_al_rut">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalledct_consultas_al_rut" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalledct_consultas_al_rut" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalledct_consultas_al_rut">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_consulta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="empresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="informe_solicitado" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_registro_orden_de_pago">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleDct_detalle_registro_orden_de_pago" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleDct_detalle_registro_orden_de_pago" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleDct_detalle_registro_orden_de_pago">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nro_orden_de_pago" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_de_registros_de_morosidad_y_protestos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleDct_detalle_de_registros_de_morosidad_y_protestos" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleDct_detalle_de_registros_de_morosidad_y_protestos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleDct_detalle_de_registros_de_morosidad_y_protestos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="dct_registros_de_morosidad_y_protestos" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleDct_registros_de_morosidad_y_protestos" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_mc_bic" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleDct_registros_de_morosidad_y_protestos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleDct_registros_de_morosidad_y_protestos" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleDct_registros_de_morosidad_y_protestos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleDct_registros_de_morosidad_y_protestos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_vencimiento_protesto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_documento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="informe_solicitado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="moneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="monto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="librador" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="localidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_deuda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="monto_pesos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleDct_detalle_individual_de_registros_de_morosidad_y_protestos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleDct_detalle_individual_de_registros_de_morosidad_y_protestos" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleDct_detalle_individual_de_registros_de_morosidad_y_protestos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleDct_detalle_individual_de_registros_de_morosidad_y_protestos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="dct_individual_de_registros_de_morosidad_y_protestos" type="tns:ArrayOfTransaccionDcp_respuestaDcp_detalleDct_individual_de_registros_de_morosidad_y_protestos" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_indiv_mc_bic" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionDcp_respuestaDcp_detalleDct_individual_de_registros_de_morosidad_y_protestos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionDcp_respuestaDcp_detalleDct_individual_de_registros_de_morosidad_y_protestos" nillable="true" type="tns:transaccionDcp_respuestaDcp_detalleDct_individual_de_registros_de_morosidad_y_protestos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionDcp_respuestaDcp_detalleDct_individual_de_registros_de_morosidad_y_protestos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_vencimiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_documento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="moneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="monto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="motivo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="emisor_librador" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_protesto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_deuda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_credito" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="localidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="monto_pesos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Prenda_detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="prenda_extractos" type="tns:Prenda_extractos" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_extractos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Prenda_extractos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="prenda_extracto" type="tns:ArrayOfPrenda_extracto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPrenda_extracto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Prenda_extracto" nillable="true" type="tns:Prenda_extracto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Prenda_extracto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="prenda_extracto_detalle" type="tns:Prenda_extracto_detalle" />
+          <s:element minOccurs="0" maxOccurs="1" name="extracto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_publicacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acreedor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="constituyente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="prenda_correlativo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Prenda_extracto_detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="prenda_detalle_publicacion" type="tns:Prenda_detalle_publicacion" />
+          <s:element minOccurs="0" maxOccurs="1" name="detalle_constituyente" type="tns:Detalle_constituyente" />
+          <s:element minOccurs="0" maxOccurs="1" name="prenda_deudores" type="tns:Prenda_deudores" />
+          <s:element minOccurs="0" maxOccurs="1" name="prenda_notario" type="tns:Prenda_notario" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Prenda_detalle_publicacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_publicacion_do" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_escritura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_constituyente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Detalle_constituyente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="direccion_constituyente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comuna_constituyente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Prenda_deudores">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="prenda_deudor" type="tns:Prenda_deudor" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_deudores" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Prenda_deudor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="rut_deudor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="razon_social_deudor" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Prenda_notario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="prenda_notario_detalle" type="tns:Prenda_notario_detalle" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Prenda_notario_detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ciudad" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="extractos_como_sociedad" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedad" />
+          <s:element minOccurs="0" maxOccurs="1" name="extractos_como_socio" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socio" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_publicaciones" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedad">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="extracto_sociedad" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedad" />
+          <s:element minOccurs="0" maxOccurs="1" name="total_extractos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedad">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedad" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedad" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedad">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="extracto_detalle_sociedad" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedad" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_extracto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_publicacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_publicacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_razon_sociedad_publicada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sociedad_correlativo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedad">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedad" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedad" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedad">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sociedad_extracto_detalle" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_extracto_detalle" />
+          <s:element minOccurs="0" maxOccurs="1" name="sociedad_antecedentes_empresa" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_empresa" />
+          <s:element minOccurs="0" maxOccurs="1" name="sociedad_antecedentes_publicacion" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_publicacion" />
+          <s:element minOccurs="0" maxOccurs="1" name="sociedad_antecedentes_reg_comercio" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_reg_comercio" />
+          <s:element minOccurs="0" maxOccurs="1" name="sociedad_antecedentes_capital" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_capital" />
+          <s:element minOccurs="0" maxOccurs="1" name="sociedad_antecedentes_notario" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_notario" />
+          <s:element minOccurs="0" maxOccurs="1" name="sociedad_motivos_publicacion" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacion" />
+          <s:element minOccurs="0" maxOccurs="1" name="sociedad_antecedentes_socios" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_socios" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_extracto_detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_extracto_detalle" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_extracto_detalle" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_extracto_detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="rut" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_razon_social" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_publicacion_diario_oficial" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_escritura" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_empresa">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_empresa" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_empresa" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_empresa">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_sociedad_publicada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="publicada_como" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_publicacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_publicacion" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_publicacion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_publicacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_de_fantasia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_de_constitucion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="constituida_como" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="duracion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_de_termino" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_reg_comercio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_reg_comercio" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_reg_comercio" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_reg_comercio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="registro_comercio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_de_foja" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_registro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ano_registro" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_capital">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_capital" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_capital" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_capital">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="capital_pagado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="capital_suscrito" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_de_acciones" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_notario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_notario" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_notario" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_notario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_notario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ciudad_notaria" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacion" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sociedad_motivos_generales" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_generales" />
+          <s:element minOccurs="0" maxOccurs="1" name="sociedad_motivos_especificos" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_especificos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_generales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_generales" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_generales" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_generales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sociedad_motivos" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_generalesSociedad_motivos" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad_motivos_generales" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_generalesSociedad_motivos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_generalesSociedad_motivos" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_generalesSociedad_motivos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_generalesSociedad_motivos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sociedad_motivo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_especificos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_especificos" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_especificos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_especificos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sociedad_m_especifico" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_especificosSociedad_m_especifico" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad_motivos_especificos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_especificosSociedad_m_especifico">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_especificosSociedad_m_especifico" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_especificosSociedad_m_especifico" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_motivos_publicacionSociedad_motivos_especificosSociedad_m_especifico">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="glosa_motivo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="rut" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="razon_social" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_socios">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_socios" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_socios" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_socios">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sociedad_socio" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_sociosSociedad_socio" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad_socios" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_sociosSociedad_socio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_sociosSociedad_socio" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_sociosSociedad_socio" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_sociedadExtracto_sociedadExtracto_detalle_sociedadSociedad_antecedentes_sociosSociedad_socio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="rut_socio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_socios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="motivo_publicacion_socio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="moneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aporte" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="porcentaje" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socio" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socio" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="extracto_socio" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socio" />
+          <s:element minOccurs="0" maxOccurs="1" name="total_extractos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socio" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socio" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="extracto_detalle_socio" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socio" />
+          <s:element minOccurs="0" maxOccurs="1" name="socio_extracto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="socio_rut" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="socio_nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="socio_correlativo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socio" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socio" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="socio_extracto_detalle" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_extracto_detalle" />
+          <s:element minOccurs="0" maxOccurs="1" name="socio_antecedentes_empresa" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_empresa" />
+          <s:element minOccurs="0" maxOccurs="1" name="socio_antecedentes_publicacion" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_publicacion" />
+          <s:element minOccurs="0" maxOccurs="1" name="socio_antecedentes_reg_comercio" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_reg_comercio" />
+          <s:element minOccurs="0" maxOccurs="1" name="socio_antecedentes_capital" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_capital" />
+          <s:element minOccurs="0" maxOccurs="1" name="socio_antecedentes_notario" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_notario" />
+          <s:element minOccurs="0" maxOccurs="1" name="socio_motivos_publicacion" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacion" />
+          <s:element minOccurs="0" maxOccurs="1" name="socio_antecedentes_socios" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_socios" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_extracto_detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_extracto_detalle" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_extracto_detalle" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_extracto_detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="rut" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_razon_social" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_publicacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_publicacion_diario_oficial" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_escritura" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_empresa">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_empresa" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_empresa" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_empresa">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_sociedad_publicada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="publicada_como" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_publicacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_publicacion" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_publicacion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_publicacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_de_fantasia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_de_constitucion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="constituida_como" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="duracion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_de_termino" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_reg_comercio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_reg_comercio" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_reg_comercio" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_reg_comercio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="registro_comercio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_de_foja" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_registro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ano_registro" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_capital">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_capital" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_capital" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_capital">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="capital_pagado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="capital_suscrito" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_de_acciones" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_notario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_notario" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_notario" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_notario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_notario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ciudad_notaria" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacion" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="socio_motivos_generales" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_generales" />
+          <s:element minOccurs="0" maxOccurs="1" name="socio_motivos_especificos" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_especificos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_generales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_generales" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_generales" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_generales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="socio_motivos" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_generalesSocio_motivos" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad_motivos_generales" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_generalesSocio_motivos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_generalesSocio_motivos" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_generalesSocio_motivos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_generalesSocio_motivos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="socio_motivo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_especificos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_especificos" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_especificos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_especificos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="socio_m_especifico" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_especificosSocio_m_especifico" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad_motivos_especificos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_especificosSocio_m_especifico">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_especificosSocio_m_especifico" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_especificosSocio_m_especifico" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_motivos_publicacionSocio_motivos_especificosSocio_m_especifico">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="glosa_motivo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="rut" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="razon_social" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_socios">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_socios" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_socios" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_socios">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="socio_socio" type="tns:ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_sociosSocio_socio" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad_socios" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_sociosSocio_socio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_sociosSocio_socio" nillable="true" type="tns:transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_sociosSocio_socio" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="transaccionSys_respuestaSys_detalleExtractos_como_socioExtracto_socioExtracto_detalle_socioSocio_antecedentes_sociosSocio_socio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="rut_socio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_socios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="motivo_publicacion_socio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="moneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aporte" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="porcentaje" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="rbr_detalle_propiedades">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nro_propiedades" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="rbr_detalle_propiedad" type="tns:ArrayOfRbr_detalle_propiedad" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRbr_detalle_propiedad">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="rbr_detalle_propiedad" nillable="true" type="tns:rbr_detalle_propiedad" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="rbr_detalle_propiedad">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="num_rol" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comuna" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ciudad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="serie" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="destino" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="avaluo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="veh_vehiculos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cant_vehiculos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="vehiculo" type="tns:ArrayOfVehiculo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVehiculo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="vehiculo" nillable="true" type="tns:vehiculo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="vehiculo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="patente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="marca" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="modelo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio_fabricacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ultima_trasferencia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="color" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="resto_color" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tasacion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConsultaTransUnionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaTransUnionResult" type="tns:DCTTransaccionNatResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TESTFINACOFI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TESTFINACOFIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TESTFINACOFIResult" type="s1:RespuestaIRUT0202" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://sinacofi.cl/WebServices">
+      <s:complexType name="RespuestaIRUT0202">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoRetorno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExisteDetalle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumAcreedores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalDocImpago" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Detalles" type="s1:ArrayOfDetalle" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDetalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Detalle" nillable="true" type="s1:Detalle" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TipoDeDoc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FecDeVenc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreAportante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoDeMoneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Monto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RutDeudorDirecto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comuna" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="InformeComercialSoapIn">
+    <wsdl:part name="parameters" element="tns:InformeComercial" />
+  </wsdl:message>
+  <wsdl:message name="InformeComercialSoapOut">
+    <wsdl:part name="parameters" element="tns:InformeComercialResponse" />
+  </wsdl:message>
+  <wsdl:message name="InformeComercialLightSoapIn">
+    <wsdl:part name="parameters" element="tns:InformeComercialLight" />
+  </wsdl:message>
+  <wsdl:message name="InformeComercialLightSoapOut">
+    <wsdl:part name="parameters" element="tns:InformeComercialLightResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaDicomSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaDicom" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaDicomSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaDicomResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaTransUnionSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaTransUnion" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaTransUnionSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaTransUnionResponse" />
+  </wsdl:message>
+  <wsdl:message name="TESTFINACOFISoapIn">
+    <wsdl:part name="parameters" element="tns:TESTFINACOFI" />
+  </wsdl:message>
+  <wsdl:message name="TESTFINACOFISoapOut">
+    <wsdl:part name="parameters" element="tns:TESTFINACOFIResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ConsultasSoap">
+    <wsdl:operation name="InformeComercial">
+      <wsdl:input message="tns:InformeComercialSoapIn" />
+      <wsdl:output message="tns:InformeComercialSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InformeComercialLight">
+      <wsdl:input message="tns:InformeComercialLightSoapIn" />
+      <wsdl:output message="tns:InformeComercialLightSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDicom">
+      <wsdl:input message="tns:ConsultaDicomSoapIn" />
+      <wsdl:output message="tns:ConsultaDicomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTransUnion">
+      <wsdl:input message="tns:ConsultaTransUnionSoapIn" />
+      <wsdl:output message="tns:ConsultaTransUnionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TESTFINACOFI">
+      <wsdl:input message="tns:TESTFINACOFISoapIn" />
+      <wsdl:output message="tns:TESTFINACOFISoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConsultasSoap" type="tns:ConsultasSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InformeComercial">
+      <soap:operation soapAction="http://tempuri.org/InformeComercial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InformeComercialLight">
+      <soap:operation soapAction="http://tempuri.org/InformeComercialLight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDicom">
+      <soap:operation soapAction="http://tempuri.org/ConsultaDicom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTransUnion">
+      <soap:operation soapAction="http://tempuri.org/ConsultaTransUnion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TESTFINACOFI">
+      <soap:operation soapAction="http://tempuri.org/TESTFINACOFI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConsultasSoap12" type="tns:ConsultasSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InformeComercial">
+      <soap12:operation soapAction="http://tempuri.org/InformeComercial" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InformeComercialLight">
+      <soap12:operation soapAction="http://tempuri.org/InformeComercialLight" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDicom">
+      <soap12:operation soapAction="http://tempuri.org/ConsultaDicom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTransUnion">
+      <soap12:operation soapAction="http://tempuri.org/ConsultaTransUnion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TESTFINACOFI">
+      <soap12:operation soapAction="http://tempuri.org/TESTFINACOFI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Consultas">
+    <wsdl:port name="ConsultasSoap" binding="tns:ConsultasSoap">
+      <soap:address location="https://web.mafchile.com/ws_consultas/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConsultasSoap12" binding="tns:ConsultasSoap12">
+      <soap12:address location="https://web.mafchile.com/ws_consultas/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
